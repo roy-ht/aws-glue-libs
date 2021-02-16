@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build image
-        run: docker build . --file Dockerfile --build-arg TAG=${{ env.TAG }} -t ${{ env.REPO }}:${{ env.TAG }}
+        run: docker build . --file Dockerfile --squash=true --build-arg TAG=${{ env.TAG }} -t ${{ env.REPO }}:${{ env.TAG }}
       # Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
       - name: Log into GitHub Container Registry
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
