@@ -31,7 +31,7 @@ jobs:
         run: |
           echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json
           sudo service docker restart
-          docker version -f '{{.Server.Experimental}
+          docker version -f '{{.Server.Experimental}}'
       - name: Build image
         run: docker build . --file Dockerfile --squash --build-arg TAG=${{ env.TAG }} -t ${{ env.REPO }}:${{ env.TAG }}
       # Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
